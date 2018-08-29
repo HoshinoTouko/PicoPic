@@ -133,7 +133,6 @@ module.exports = {
           loaders.jsLoader,
           loaders.tsLoader,
           loaders.cssLoaderDev,
-          loaders.scssLoaderDev,
           loaders.lessLoaderDev,
           loaders.fileLoader,
         ],
@@ -197,5 +196,13 @@ module.exports = {
   // cumbersome.
   performance: {
     hints: false,
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 3000,
+    proxy: {
+      '/api': 'http://localhost:8000'
+    },
   },
 };
