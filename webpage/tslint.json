@@ -5,5 +5,9 @@
       "config/**/*.js",
       "node_modules/**/*.ts"
     ]
+  },
+  "rulesDirectory": ["node_modules/tslint/lib/rules"],
+  "rules": {
+    "object-literal-sort-keys": false
   }
 }
