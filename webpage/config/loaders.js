@@ -162,32 +162,6 @@ const cssLoaderProd = {
   // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
 };
 
-// scss loader
-const scssLoaderDev = {
-  test: /\.scss$/,
-  use: [
-    require.resolve('style-loader'),
-    rawCssLoaderDev,
-    precssLoader,
-  ],
-};
-
-const scssLoaderProd = {
-  test: /\.scss$/,
-  loader: ExtractTextPlugin.extract(
-    Object.assign(
-      {
-        fallback: require.resolve('style-loader'),
-        use: [
-          rawCssLoaderProd,
-          precssLoader,
-        ],
-      },
-      extractTextPluginOptions
-    )
-  )
-};
-
 // less loader
 const lessLoaderDev = {
   test: /\.less$/,
@@ -238,8 +212,6 @@ module.exports = {
   tsLoader,
   cssLoaderDev,
   cssLoaderProd,
-  scssLoaderDev,
-  scssLoaderProd,
   lessLoaderDev,
   lessLoaderProd,
   fileLoader,

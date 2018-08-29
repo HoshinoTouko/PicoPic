@@ -1,11 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
-import './index.less';
+
+import AppLayout from './AppLayout/AppLayout';
 import registerServiceWorker from './registerServiceWorker';
 
+import './index.less';
+
 ReactDOM.render(
-  <App />,
+  <div className="App">
+    <AppLayout />
+  </div>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
