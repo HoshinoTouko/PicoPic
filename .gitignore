@@ -1,5 +1,28 @@
+# Webpage
+# dependencies
+webpage/node_modules
+
+# testing
+webpage/coverage
+
+# production
+webpage/build
+
+# misc
+webpage/.DS_Store
+webpage/.env.local
+webpage/.env.development.local
+webpage/.env.test.local
+webpage/.env.production.local
+
+webpage/npm-debug.log*
+webpage/yarn-debug.log*
+webpage/yarn-error.log*
+
+
 # DB
 db.sqlite3
+
 
 # VSCode
 .vscode/
