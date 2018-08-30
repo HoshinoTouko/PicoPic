@@ -6,14 +6,14 @@ Author: Touko Hoshino
 Last Modified:
 Modified By:
 -----
-Copyright (c) 2018 Your Company
+Copyright (c) 2018 Hoshino Touko
 '''
 from rest_framework import serializers
 from post.models import Post
 
 
 class PostSerializers(serializers.ModelSerializer):
-    """PostSerializers"""
+    """Post serializers"""
     author = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
 

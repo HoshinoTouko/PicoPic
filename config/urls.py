@@ -18,17 +18,21 @@ from django.conf.urls import url
 from django.urls import path, include
 from rest_framework import routers
 
+from image.views import ImageViewSet, retrive_image
 from post.views import PostViewSet
 
 
 # APIs
 ROUTE = routers.DefaultRouter()
 ROUTE.register(r'post', PostViewSet)
+ROUTE.register(r'image', ImageViewSet)
 
 
 # URLs
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/retrive_image/<str:image_name>', retrive_image),
+
     url(r'^api/', include(ROUTE.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
 ]
