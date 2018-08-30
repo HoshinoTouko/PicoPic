@@ -4,8 +4,9 @@ from image.models import Image
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = (
-        'name',
+        'title',
         'post',
+        'image',
     )
 
 admin.site.register(Image, ImageAdmin)

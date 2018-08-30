@@ -10,10 +10,15 @@ Copyright (c) 2018 Hoshino Touko
 '''
 from rest_framework import serializers
 from image.models import Image
-
+from constants import IMG_BASE_URL
 
 class ImageSerializers(serializers.ModelSerializer):
     """Image serializers"""
+    url = serializers.SerializerMethodField()
+
     class Meta:
         model = Image
-        fields = ('name', 'post', 'img_type')
+        fields = ('title', 'post', 'url')
+    
+    def get_url(self, obj):
+        return IMG_BASE_URL % obj.title

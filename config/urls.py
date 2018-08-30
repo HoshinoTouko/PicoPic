@@ -31,7 +31,7 @@ ROUTE.register(r'image', ImageViewSet)
 # URLs
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/retrive_image/<str:image_name>', retrive_image),
+    path('api/retrive_image/<str:image_title>', retrive_image),
 
     url(r'^api/', include(ROUTE.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),

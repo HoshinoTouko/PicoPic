@@ -15,7 +15,6 @@ import json
 
 from image.models import Image
 from image.serializers import ImageSerializers
-from image.services import ImageService
 
 class ImageViewSet(viewsets.ModelViewSet):
     """Image viewset"""
@@ -23,12 +22,11 @@ class ImageViewSet(viewsets.ModelViewSet):
     serializer_class = ImageSerializers
 
 
-def retrive_image(request, image_name):
+def retrive_image(request, image_title):
     """Get image view"""
-    image_instance = get_object_or_404(Image, name=image_name)
+    image_instance = get_object_or_404(Image, title=image_title)
 
     try:
-        img_data = ImageService.retrive_image(image_instance)
-        return HttpResponse(img_data, content_type="image")
+        return HttpResponse(image_instance.image, content_type="image")
     except Exception as e:
         return HttpResponse(json.dumps({'Error': str(e)}), status=403)

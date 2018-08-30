@@ -10,16 +10,17 @@ Copyright (c) 2018 Hoshino Touko
 '''
 from rest_framework import serializers
 from post.models import Post
+from constants import IMG_BASE_URL
 
 
 class PostSerializers(serializers.ModelSerializer):
     """Post serializers"""
     author = serializers.SerializerMethodField()
-    image = serializers.SerializerMethodField()
+    preview_image = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ('name', 'title', 'author', 'image')
+        fields = ('title', 'author', 'preview_image')
 
     def get_author(self, obj):
         """Get author"""
@@ -28,6 +29,6 @@ class PostSerializers(serializers.ModelSerializer):
             'name': obj.owner.username,
         }
 
-    def get_image(self, obj):
+    def get_preview_image(self, obj):
         """Get image"""
-        return list(map(lambda x: x.name, obj.image.all()))
+        return list(map(lambda x: IMG_BASE_URL % x.title, obj.image.all()[:9]))
