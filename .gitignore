@@ -22,6 +22,7 @@ webpage/yarn-error.log*
 
 # DB
 db.sqlite3
+data/
 
 
 # VSCode
