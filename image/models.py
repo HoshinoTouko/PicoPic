@@ -9,6 +9,8 @@ Modified By:
 Copyright (c) 2018 Hoshino Touko
 '''
 from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch.dispatcher import receiver
 import random
 import string
 
@@ -24,4 +26,14 @@ class Image(models.Model):
     def save(self, *args, **kwargs):
         if self.title == '':
             self.title = ''.join(random.sample(string.ascii_letters + string.digits, 32))
+            if '.' in str(self.image.name):
+                suffix = str(self.image.name).split('.')[-1]
+                self.image.name = '%s.%s' % (self.title, suffix)
+            else:
+                self.image.name = self.title
         super().save(*args, **kwargs)
+
+
+@receiver(pre_delete, sender=Image)
+def image_delete(sender, instance, **kwargs):
+    instance.image.delete(False)
