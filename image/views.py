@@ -11,6 +11,7 @@ Copyright (c) 2018 Hoshino Touko
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
+import json
 
 from image.models import Image
 from image.serializers import ImageSerializers
@@ -26,5 +27,8 @@ def retrive_image(request, image_name):
     """Get image view"""
     image_instance = get_object_or_404(Image, name=image_name)
 
-    return HttpResponse(ImageService.retrive_image(
-        image_instance), content_type="image/%s" % image_instance.img_type)
+    try:
+        img_data = ImageService.retrive_image(image_instance)
+        return HttpResponse(img_data, content_type="image")
+    except Exception as e:
+        return HttpResponse(json.dumps({'Error': str(e)}), status=403)

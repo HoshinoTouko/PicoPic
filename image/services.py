@@ -28,7 +28,7 @@ class ImageService:
         image_file_path = os.path.join(IMAGE_DATA_PATH, img_path)
 
         if not os.path.exists(image_file_path):
-            raise Exception('Image not found %s' % image_file_path)
+            raise Exception('Image not found')
 
         with open(image_file_path, 'rb') as img_file:
             return img_file.read()
